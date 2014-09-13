@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.pruebas.j2ee6</groupId>
+	<artifactId>ejb001</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>ejb001</name>
+	<packaging>ejb</packaging>
+
+	<properties>
+		<glassfish.domain.name>domain1</glassfish.domain.name>
+		<glassfish.home>C:/Servers/glassfish4</glassfish.home>
+		<integration.container.id>glassfish4x</integration.container.id>
+	</properties>
+
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<ejbVersion>3.1</ejbVersion>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.4.4</version>
+				<configuration>
+					<container>
+						<containerId>${integration.container.id}</containerId>
+						<type>installed</type>
+						<home>${glassfish.home}</home>
+					</container>
+					<configuration>
+						<type>existing</type>
+						<home>${glassfish.home}/glassfish/domains</home>
+						<properties>
+							<cargo.glassfish.domain.name>${glassfish.domain.name}</cargo.glassfish.domain.name>
+							<cargo.remote.password />
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.glassfish.main.extras</groupId>
+			<artifactId>glassfish-embedded-all</artifactId>
+			<version>4.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

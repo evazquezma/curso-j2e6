@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<display-name>servlets001</display-name>
+	
+	
+	<!-- Declaración de Servlets -->
+	<servlet>
+		<servlet-name>miProcessServlet</servlet-name>
+		<servlet-class>es.pruebas.j2ee6.web.servlet.MiProcessServlet</servlet-class>			
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>miProcessServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- Declaración de Filtros -->
+	<filter>
+		<filter-name>simpleFilter</filter-name>
+		<filter-class>es.pruebas.j2ee6.web.filter.SimpleFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>simpleFilter</filter-name>
+		<url-pattern>/contar/*</url-pattern>
+	</filter-mapping>
+	
+	
+	<!-- Declaración de Listeners -->
+	<listener>
+		<listener-class>es.pruebas.j2ee6.web.listener.SimpleServletContextListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>es.pruebas.j2ee6.web.listener.SessionListener</listener-class>
+	</listener>	
+	
+	
+</web-app>
